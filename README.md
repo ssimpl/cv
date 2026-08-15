@@ -1,6 +1,6 @@
 # Resume
 
-Build a PDF resume from YAML. Edit your content, run `make pdf`, get `resume.pdf` in the project root.
+Build a PDF resume from YAML. Edit your content in `resume.yaml`, add your `photo.png`, run `make pdf`, get `resume.pdf` in the project root.
 
 ## Dependencies
 
@@ -21,7 +21,7 @@ make pdf
 Then:
 
 1. Edit `resume.yaml` (name, contacts, jobs, skills).
-2. Replace `photo.png` with a square headshot.
+2. Add your `photo.png`.
 3. Run `make pdf` again.
 
 Output is `resume.pdf` in the project root. `resume.yaml`, `photo.png`, and `resume.pdf` are gitignored, so your details stay local.
