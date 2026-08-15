@@ -1,0 +1,100 @@
+# Copy this file to resume.yaml, then run:  make
+# Inline markdown: **bold**, *italic*, ***bold italic***, __underline__, ~~strike~~
+name: JOHN DOE
+title: Software Engineer
+photo: photo.png
+
+contacts:
+  - type: phone
+    text: "+1 415 555 0199"
+    href: "tel:+14155550199"
+  - type: email
+    text: john.doe@example.com
+    href: "mailto:john.doe@example.com"
+  - type: link
+    text: https://linkedin.com/in/example
+    href: "https://linkedin.com/in/example"
+  - type: link
+    text: https://github.com/example
+    href: "https://github.com/example"
+  - type: location
+    text: Lisbon, Portugal
+
+summary: >
+  **Software Engineer** with *8+ years* building
+  web products. Comfortable with *APIs*,
+  *databases*, and turning product ideas into
+  something people can actually click.
+
+skills:
+  - Python
+  - TypeScript
+  - REST APIs
+  - PostgreSQL
+  - Redis
+  - Docker
+  - React
+  - Linux
+  - Git
+
+experience:
+  - title: Software Engineer
+    company: Northwind Labs
+    dates: 08/2024 - Present
+    location: Remote, EU
+    tagline: Online bookstore and catalog search
+    page: 1
+    bullets:
+      - Shipped a catalog search that lets readers filter books by genre, language, and "has a talking dragon".
+      - Built a recommendations job that suggests the next novel from what people actually finish, not just what they add to a list.
+      - Added a reading-progress API so the iOS and web apps stay in sync when someone falls asleep on chapter 12.
+      - Split a slow homepage query into smaller lookups; typical catalog pages went from "coffee break" to under 200ms.
+      - Wrote a tiny admin tool for editors to fix author names, cover art, and the occasional book filed under Cooking by mistake.
+      - Set up basic metrics and alerts when search starts returning zero hits for popular titles.
+      - Pair-programmed with two new hires on their first production pull requests.
+
+  - title: Backend Engineer
+    company: Helix Notes
+    dates: 07/2022 - 07/2024
+    location: Berlin, Germany
+    tagline: Shared notebooks for small teams
+    intro: Worked on the sync and sharing backend for a notes app used by design and research teams.
+    page: 1
+    bullets:
+      - Designed the note-sync service so two people can edit the same grocery list without duplicating "milk".
+      - Moved file attachments off the main database into object storage; backups stopped taking all afternoon.
+      - Added share links with expiry dates after someone pasted a private notebook into a public Slack channel.
+      - Cut peak memory on the sync worker by caching recent notes instead of loading the whole workspace.
+      - Introduced request logs and error tracking so "the app ate my note" tickets had a paper trail.
+      - Ran on-call for the notes API, including the incident where a leap-second made every reminder fire twice.
+      - Mentored intern projects: tags, full-text search, and a very serious dark mode flag.
+
+  - title: Technical Lead
+    company: Parcelly
+    dates: 10/2019 - 07/2022
+    location: Amsterdam, Netherlands
+    tagline: Plant-watering reminders for offices
+    page: 2
+    bullets:
+      - Led a team of four on an app that reminds offices to water the ficus before it becomes a stick.
+      - Replaced a spreadsheet-based plant roster with a real schedule service and a weekly digest email.
+      - Worked with ops to add floor maps so the watering route did not skip the third-floor ferns.
+      - Migrated the reminder worker from a nightly cron to a queue, which stopped Monday-morning burst emails.
+      - Added a simple dashboard: plants watered, plants ignored, plants that somehow acquired names.
+      - Ran planning, reviews, and the occasional debate about whether cacti need a snooze button.
+
+  - title: Software Developer
+    company: Brightledger
+    dates: 05/2017 - 09/2019
+    location: London, UK
+    tagline: Community library check-out desk
+    page: 2
+    bullets:
+      - Built the check-out flow for a small library: scan a book, scan a card, try not to fine the mayor.
+      - Added overdue reminders and a staff screen for books that have been "almost returned" for three months.
+      - Helped migrate member records off a shared Access file into PostgreSQL.
+
+education:
+  - title: Master's degree, Computer science
+    school: Example State University
+    dates: 2011 - 2015

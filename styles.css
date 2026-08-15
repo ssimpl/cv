@@ -1,0 +1,402 @@
+@font-face {
+  font-family: Rubik;
+  src: url("assets/fonts/Rubik-Medium-static.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("assets/fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("assets/fonts/Inter-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("assets/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: resumeicons;
+  src: url("assets/fonts/resumeicons.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --blue: #1c90fc;
+  --text: #1a1a1a;
+  --body: #3e3e3e;
+  --heading: #111;
+  --muted: #737373;
+  --tagline: #3d3d3d;
+  --line: #111;
+  --dash: #cfcfcf;
+  --skill-line: #bdbdbd;
+  --page-w: 595.92pt;
+  --page-h: 842.88pt;
+  --margin-x: 49pt;
+  --col-main: 280pt;
+  --col-side: 186.5pt;
+  --gutter: 31.5pt;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: #fff;
+  color: var(--text);
+  font-family: Inter, sans-serif;
+  font-size: 8.2pt;
+  font-weight: 400;
+  line-height: 10.15pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  font-synthesis: none;
+}
+
+a, a:visited, a:link {
+  color: var(--text) !important;
+  text-decoration: none;
+}
+
+.page {
+  width: var(--page-w);
+  height: var(--page-h);
+  padding: 43.5pt var(--margin-x) 40pt;
+  background: #fff;
+}
+
+.page-1 {
+  position: relative;
+  break-after: page;
+  page-break-after: always;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24pt;
+}
+
+.header-text {
+  flex: 1;
+  min-width: 0;
+  padding-right: 14pt;
+}
+
+h1 {
+  font-family: Rubik, Inter, sans-serif;
+  font-size: 24pt;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--heading);
+}
+
+.role {
+  margin-top: 8.5pt;
+  color: var(--blue);
+  font-size: 12pt;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.photo {
+  width: 85.63pt;
+  height: 85.63pt;
+  margin-top: 0.25pt;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 9pt;
+  list-style: none;
+  margin-top: 8pt;
+  font-size: 8pt;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--body);
+}
+
+.contacts + .contacts {
+  margin-top: 3.5pt;
+}
+
+.contacts li {
+  display: flex;
+  align-items: center;
+  gap: 3.5pt;
+  white-space: nowrap;
+}
+
+.contacts a,
+.contacts a:visited {
+  color: var(--body) !important;
+}
+
+.ri {
+  font-family: resumeicons, sans-serif;
+  font-size: 10pt;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  color: var(--blue);
+  display: inline-block;
+  speak: never;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon {
+  width: 8.5pt;
+  height: 8.5pt;
+  color: var(--blue);
+  flex-shrink: 0;
+  display: block;
+}
+
+h2 {
+  font-size: 11.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--heading);
+  padding-bottom: 0;
+  margin: 0 0 7.5pt;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  /* Chrome print snaps 2pt to 2.25pt; scale back to 2pt. */
+  height: 2.25pt;
+  margin-top: 2pt;
+  background: var(--heading);
+  transform: scaleY(0.8889);
+  transform-origin: top;
+}
+
+.cols {
+  position: relative;
+}
+
+.main {
+  width: var(--col-main);
+}
+
+aside {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--col-side);
+}
+
+.narrow {
+  width: var(--col-main);
+}
+
+aside h2 + .summary + h2 {
+  margin-top: 13pt;
+}
+
+.summary {
+  font-size: 8.2pt;
+  line-height: 10.8pt;
+  color: var(--body);
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
+}
+
+u {
+  text-decoration: underline;
+}
+
+s {
+  text-decoration: line-through;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6.5pt 10pt;
+  list-style: none;
+}
+
+.skills li {
+  border-bottom: 0.7pt solid var(--skill-line);
+  padding-bottom: 1pt;
+  color: var(--body);
+  font-size: 8.5pt;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.job {
+  padding-bottom: 7pt;
+  margin-bottom: 7pt;
+  border-bottom: 0.6pt dashed var(--dash);
+}
+
+.job.last {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.page-2 .job.last {
+  margin-bottom: 20pt;
+}
+
+.job-title {
+  font-size: 11pt;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--heading);
+}
+
+.job-company {
+  margin-top: 1.2pt;
+  color: var(--blue);
+  font-size: 11pt;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8pt 12pt;
+  margin-top: 3pt;
+  color: var(--muted);
+  font-size: 8pt;
+  line-height: 8.5pt;
+  overflow: visible;
+}
+
+.job-meta span {
+  display: flex;
+  align-items: center;
+  gap: 3.5pt;
+  overflow: visible;
+}
+
+.job-meta .ri,
+.job-meta .icon {
+  color: var(--muted);
+  font-size: 8.5pt;
+  width: 8.5pt;
+  height: 8.5pt;
+  overflow: visible;
+}
+
+.job-meta .icon-cal {
+  width: 6.5pt;
+  height: 7.4pt;
+}
+
+.job-tagline {
+  margin-top: 4pt;
+  color: var(--tagline);
+  font-size: 8.2pt;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 10.15pt;
+}
+
+.job-intro {
+  margin-top: 4pt;
+  font-size: 8.2pt;
+  line-height: 10.15pt;
+  color: var(--body);
+}
+
+.job ul {
+  margin-top: 4pt;
+  padding-left: 11.5pt;
+  list-style: none;
+}
+
+.job-intro + ul {
+  margin-top: 7pt;
+}
+
+.job li {
+  position: relative;
+  margin-bottom: 1.15pt;
+  color: var(--body);
+}
+
+.job li::before {
+  content: "";
+  position: absolute;
+  left: -8.1pt;
+  top: 2.7pt;
+  width: 3pt;
+  height: 3pt;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+@page {
+  size: 595.92pt 842.88pt;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    width: var(--page-w);
+    height: auto;
+    margin: 0;
+    background: #fff;
+  }
+
+  .page {
+    margin: 0;
+    box-shadow: none;
+    overflow: visible;
+    height: var(--page-h);
+  }
+}
+
+@media screen {
+  body {
+    background: #e8e8e8;
+  }
+
+  .page {
+    margin: 16pt auto;
+    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
+  }
+}

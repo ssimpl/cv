@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ name }} — CV</title>
+  <link rel="stylesheet" href="{{ css_uri }}">
+</head>
+<body>
+  {% macro icon(name) %}
+    {% if name == "phone" %}
+      <span class="ri" aria-hidden="true">E</span>
+    {% elif name == "email" %}
+      <span class="ri" aria-hidden="true">&#xe069;</span>
+    {% elif name == "link" %}
+      <span class="ri" aria-hidden="true">q</span>
+    {% elif name == "location" %}
+      <span class="ri" aria-hidden="true">&#xe092;</span>
+    {% elif name == "calendar" %}
+      <svg class="icon icon-cal" viewBox="0 0 260 297" aria-hidden="true"><path fill="currentColor" d="M64 0h24a8 8 0 0 1 8 8v36H56V8a8 8 0 0 1 8-8Zm111 0h24a8 8 0 0 1 8 8v36h-40V8a8 8 0 0 1 8-8ZM33 37h194c17.7 0 32 14.3 32 32v23H1V69c0-17.7 14.3-32 32-32Z"/><path fill="currentColor" fill-rule="evenodd" d="M1 111h258v154c0 17.7-14.3 32-32 32H33c-17.7 0-32-14.3-32-32V111Zm41 42a4 4 0 0 1 4-4h29a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4h-29a4 4 0 0 1-4-4v-28Zm74 0a4 4 0 0 1 4-4h29a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4h-29a4 4 0 0 1-4-4v-28Zm74 0a4 4 0 0 1 4-4h29a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4h-29a4 4 0 0 1-4-4v-28Zm-148 74a4 4 0 0 1 4-4h29a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4h-29a4 4 0 0 1-4-4v-28Zm74 0a4 4 0 0 1 4-4h29a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4h-29a4 4 0 0 1-4-4v-28Zm74 0a4 4 0 0 1 4-4h29a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4h-29a4 4 0 0 1-4-4v-28Z"/></svg>
+    {% endif %}
+  {% endmacro %}
+
+  {% macro job(item, last=false) %}
+    <article class="job{% if last %} last{% endif %}">
+      <h3 class="job-title">{{ item.title | md }}</h3>
+      <div class="job-company">{{ item.company | md }}</div>
+      <div class="job-meta">
+        <span>{{ icon("calendar") }} {{ item.dates }}</span>
+        {% if item.location %}
+          <span>{{ icon("location") }} {{ item.location }}</span>
+        {% endif %}
+      </div>
+      {% if item.tagline %}<p class="job-tagline">{{ item.tagline | md }}</p>{% endif %}
+      {% if item.intro %}<p class="job-intro">{{ item.intro | md }}</p>{% endif %}
+      {% if item.bullets %}
+        <ul>
+          {% for bullet in item.bullets %}
+            <li>{{ bullet | md }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </article>
+  {% endmacro %}
+
+  <section class="page page-1">
+    <header class="header">
+      <div class="header-text">
+        <h1>{{ name }}</h1>
+        <p class="role">{{ title }}</p>
+        <ul class="contacts">
+          {% for c in contacts[:3] %}
+            <li>
+              {{ icon(c.type) }}
+              {% if c.href %}<a href="{{ c.href }}">{{ c.text }}</a>{% else %}{{ c.text }}{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+        <ul class="contacts">
+          {% for c in contacts[3:] %}
+            <li>
+              {{ icon(c.type) }}
+              {% if c.href %}<a href="{{ c.href }}">{{ c.text }}</a>{% else %}{{ c.text }}{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% if photo_uri %}
+        <img class="photo" src="{{ photo_uri }}" alt="{{ name }}">
+      {% endif %}
+    </header>
+
+    <div class="cols">
+      <div class="main">
+        <h2>Experience</h2>
+        {% for item in page1_jobs %}
+          {{ job(item, last=loop.last) }}
+        {% endfor %}
+      </div>
+      <aside>
+        <h2>Summary</h2>
+        <p class="summary">{{ summary | md }}</p>
+        <h2>Skills</h2>
+        <ul class="skills">
+          {% for skill in skills %}
+            <li>{{ skill | md }}</li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="page page-2">
+    <div class="narrow">
+      <h2>Experience</h2>
+      {% for item in page2_jobs %}
+        {{ job(item, last=loop.last) }}
+      {% endfor %}
+
+      <h2>Education</h2>
+      {% for item in education %}
+        <article class="job last">
+          <h3 class="job-title">{{ item.title | md }}</h3>
+          <div class="job-company">{{ item.school | md }}</div>
+          <div class="job-meta">
+            <span>{{ icon("calendar") }} {{ item.dates }}</span>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</body>
+</html>

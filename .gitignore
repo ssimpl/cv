@@ -1,0 +1,12 @@
+.venv/
+.preview/
+__pycache__/
+*.pyc
+.DS_Store
+dist/
+resume.yaml
+photo.png
+resume.pdf
+assets/fonts/*.otf
+assets/fonts/orig-*.ttf
+assets/fonts/Rubik-Medium.ttf
