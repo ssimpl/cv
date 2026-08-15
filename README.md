@@ -1,4 +1,4 @@
-# Resume
+# CV Builder
 
 Build a PDF resume from YAML. Edit your content in `resume.yaml`, add your `photo.png`, run `make pdf`, get `resume.pdf` in the project root.
 
