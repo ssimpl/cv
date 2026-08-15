@@ -28,11 +28,25 @@ CHROME_CANDIDATES = [
 ]
 
 
-def md(text: str | None) -> Markup:
+def as_text(value: object) -> str:
+    """YAML `key: value` bullets become maps; flatten them back to a line."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        return "; ".join(f"{k}: {as_text(v)}" for k, v in value.items())
+    if isinstance(value, list):
+        return "; ".join(as_text(item) for item in value)
+    return str(value)
+
+
+def md(text: object) -> Markup:
     """Inline markdown: **bold**, *italic*, ***both***, __underline__, ~~strike~~."""
-    if not text:
+    raw = as_text(text)
+    if not raw:
         return Markup("")
-    escaped = str(Markup.escape(text))
+    escaped = str(Markup.escape(raw))
     escaped = re.sub(r"\*\*\*(.+?)\*\*\*", r"<strong><em>\1</em></strong>", escaped)
     escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
     escaped = re.sub(r"~~(.+?)~~", r"<s>\1</s>", escaped)

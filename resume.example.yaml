@@ -1,5 +1,6 @@
-# Copy this file to resume.yaml, then run:  make
+# Copy this file to resume.yaml, then run:  make pdf
 # Inline markdown: **bold**, *italic*, ***bold italic***, __underline__, ~~strike~~
+# Quote a bullet if it contains a colon, or YAML will parse it as a map.
 name: JOHN DOE
 title: Software Engineer
 photo: photo.png
@@ -67,7 +68,7 @@ experience:
       - Cut peak memory on the sync worker by caching recent notes instead of loading the whole workspace.
       - Introduced request logs and error tracking so "the app ate my note" tickets had a paper trail.
       - Ran on-call for the notes API, including the incident where a leap-second made every reminder fire twice.
-      - Mentored intern projects: tags, full-text search, and a very serious dark mode flag.
+      - "Mentored intern projects: tags, full-text search, and a very serious dark mode flag."
 
   - title: Technical Lead
     company: Parcelly
@@ -80,7 +81,7 @@ experience:
       - Replaced a spreadsheet-based plant roster with a real schedule service and a weekly digest email.
       - Worked with ops to add floor maps so the watering route did not skip the third-floor ferns.
       - Migrated the reminder worker from a nightly cron to a queue, which stopped Monday-morning burst emails.
-      - Added a simple dashboard: plants watered, plants ignored, plants that somehow acquired names.
+      - "Added a simple dashboard: plants watered, plants ignored, plants that somehow acquired names."
       - Ran planning, reviews, and the occasional debate about whether cacti need a snooze button.
 
   - title: Software Developer
@@ -90,7 +91,7 @@ experience:
     tagline: Community library check-out desk
     page: 2
     bullets:
-      - Built the check-out flow for a small library: scan a book, scan a card, try not to fine the mayor.
+      - "Built the check-out flow for a small library: scan a book, scan a card, try not to fine the mayor."
       - Added overdue reminders and a staff screen for books that have been "almost returned" for three months.
       - Helped migrate member records off a shared Access file into PostgreSQL.
 
