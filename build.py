@@ -93,30 +93,16 @@ def paragraphs(value: object) -> list[str]:
 
 LEVEL_DOTS = {
     "native": 5,
-    "bilingual": 5,
-    "fluent": 5,
-    "c2": 5,
-    "advanced": 4,
     "proficient": 4,
-    "c1": 4,
-    "intermediate": 3,
-    "upper-intermediate": 3,
-    "b2": 3,
-    "b1": 3,
-    "elementary": 2,
-    "pre-intermediate": 2,
-    "a2": 2,
+    "advanced": 3,
+    "intermediate": 2,
     "beginner": 1,
-    "basic": 1,
-    "a1": 1,
 }
 
 
 def language_dots(lang: dict) -> int:
-    if "dots" in lang:
-        return max(0, min(5, int(lang["dots"])))
     level = re.sub(r"[\s_]+", "-", str(lang.get("level", "")).casefold().strip())
-    return LEVEL_DOTS.get(level, 4)
+    return LEVEL_DOTS.get(level, 0)
 
 
 def normalize_languages(langs: object) -> list[dict]:
