@@ -21,11 +21,16 @@ contacts:
   - type: location
     text: Lisbon, Portugal
 
-summary: >
-  **Software Engineer** with *8+ years* building
-  web products. Comfortable with *APIs*,
-  *databases*, and turning product ideas into
-  something people can actually click.
+summary:
+  - >
+    **Software Engineer** with *8+ years* building
+    web products. Comfortable with *APIs*,
+    *databases*, and turning product ideas into
+    something people can actually click.
+  - >
+    **Also:** I like **clear specs**, *boring* deploys,
+    and leaving the next person a README that is
+    actually true.
 
 skills:
   - Python
@@ -38,7 +43,18 @@ skills:
   - Linux
   - Git
 
+languages:
+  # Native 5 · Advanced 4 · Intermediate 3 · Elementary 2 · Beginner 1
+  # Or set dots: 1-5 yourself.
+  - name: English
+    level: Advanced
+  - name: Portuguese
+    level: Intermediate
+  - name: Spanish
+    level: Beginner
+
 experience:
+  # page: 1, 2, 3, ... — omit for 1; overflows to the next page if it does not fit
   - title: Software Engineer
     company: Northwind Labs
     dates: 08/2024 - Present
@@ -95,7 +111,12 @@ experience:
       - Added overdue reminders and a staff screen for books that have been "almost returned" for three months.
       - Helped migrate member records off a shared Access file into PostgreSQL.
 
+# position: left (under Experience) or right (right column)
+# page: 1, 2, 3, ... — omit for 1; overflows to the next page if it does not fit
 education:
-  - title: Master's degree, Computer science
-    school: Example State University
-    dates: 2011 - 2015
+  position: right
+  page: 1
+  items:
+    - title: Master's degree, Computer science
+      school: Example State University
+      dates: 2011 - 2015

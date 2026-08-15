@@ -42,7 +42,29 @@
     </article>
   {% endmacro %}
 
-  <section class="page page-1">
+  {% macro forced_page_breaks(n) %}
+    {% if n > 1 %}
+      {% for _ in range(n - 1) %}
+        <div class="page-break" aria-hidden="true"></div>
+      {% endfor %}
+    {% endif %}
+  {% endmacro %}
+
+  {% macro education_block(items, breaks=0) %}
+    {{ forced_page_breaks(breaks) }}
+    <h2{% if breaks %} class="break"{% endif %}>Education</h2>
+    {% for item in items %}
+      <article class="job{% if loop.last %} last{% endif %}">
+        <h3 class="job-title">{{ item.title | md }}</h3>
+        <div class="job-company">{{ item.school | md }}</div>
+        <div class="job-meta">
+          <span>{{ icon("calendar") }} {{ item.dates }}</span>
+        </div>
+      </article>
+    {% endfor %}
+  {% endmacro %}
+
+  <div class="sheet">
     <header class="header">
       <div class="header-text">
         <h1>{{ name }}</h1>
@@ -70,43 +92,51 @@
     </header>
 
     <div class="cols">
-      <div class="main">
-        <h2>Experience</h2>
-        {% for item in page1_jobs %}
-          {{ job(item, last=loop.last) }}
-        {% endfor %}
-      </div>
       <aside>
         <h2>Summary</h2>
-        <p class="summary">{{ summary | md }}</p>
+        {% for p in summary_paragraphs %}
+          <p class="summary">{{ p | md }}</p>
+        {% endfor %}
         <h2>Skills</h2>
         <ul class="skills">
           {% for skill in skills %}
             <li>{{ skill | md }}</li>
           {% endfor %}
         </ul>
+        {% if languages %}
+          <h2>Languages</h2>
+          <ul class="languages">
+            {% for lang in languages %}
+              <li>
+                <div class="lang-head">
+                  <span class="lang-name">{{ lang.name }}</span>
+                  <span class="lang-level">{{ lang.level }}</span>
+                </div>
+                <span class="lang-dots" aria-hidden="true">{% for n in range(5) -%}
+                  <span class="lang-dot{% if n < lang.dots %} on{% endif %}">&#9679;</span>
+                {%- endfor %}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if edu.entries and edu.position == "right" %}
+          {{ education_block(edu.entries, breaks=(edu.page - 1)) }}
+        {% endif %}
       </aside>
+      <div class="main{% if edu.entries and edu.position == "left" %} has-edu{% endif %}">
+        {% for section in main_sections %}
+          {% if section.kind == "experience" %}
+            {{ forced_page_breaks(section.breaks) }}
+            <h2{% if section.breaks %} class="break"{% endif %}>Experience</h2>
+            {% for item in section.jobs %}
+              {{ job(item, last=loop.last) }}
+            {% endfor %}
+          {% elif section.kind == "education" %}
+            {{ education_block(edu.entries, breaks=section.breaks) }}
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
-  </section>
-
-  <section class="page page-2">
-    <div class="narrow">
-      <h2>Experience</h2>
-      {% for item in page2_jobs %}
-        {{ job(item, last=loop.last) }}
-      {% endfor %}
-
-      <h2>Education</h2>
-      {% for item in education %}
-        <article class="job last">
-          <h3 class="job-title">{{ item.title | md }}</h3>
-          <div class="job-company">{{ item.school | md }}</div>
-          <div class="job-meta">
-            <span>{{ icon("calendar") }} {{ item.dates }}</span>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
+  </div>
 </body>
 </html>

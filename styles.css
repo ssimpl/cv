@@ -79,17 +79,11 @@ a, a:visited, a:link {
   text-decoration: none;
 }
 
-.page {
+.sheet {
   width: var(--page-w);
-  height: var(--page-h);
+  min-height: var(--page-h);
   padding: 43.5pt var(--margin-x) 40pt;
   background: #fff;
-}
-
-.page-1 {
-  position: relative;
-  break-after: page;
-  page-break-after: always;
 }
 
 .header {
@@ -188,6 +182,8 @@ h2 {
   color: var(--heading);
   padding-bottom: 0;
   margin: 0 0 7.5pt;
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
 h2::after {
@@ -201,26 +197,31 @@ h2::after {
   transform-origin: top;
 }
 
-.cols {
-  position: relative;
+h2.break,
+.page-break {
+  break-before: page;
+  page-break-before: always;
+}
+
+.page-break {
+  height: 0;
+  overflow: hidden;
 }
 
 .main {
-  width: var(--col-main);
+  margin-right: calc(var(--col-side) + var(--gutter));
+}
+
+.main.has-edu > .job.last {
+  margin-bottom: 20pt;
 }
 
 aside {
-  position: absolute;
-  top: 0;
-  right: 0;
+  float: right;
   width: var(--col-side);
 }
 
-.narrow {
-  width: var(--col-main);
-}
-
-aside h2 + .summary + h2 {
+aside h2:not(:first-child):not(.break) {
   margin-top: 13pt;
 }
 
@@ -228,6 +229,12 @@ aside h2 + .summary + h2 {
   font-size: 8.2pt;
   line-height: 10.8pt;
   color: var(--body);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.summary + .summary {
+  margin-top: 7pt;
 }
 
 em {
@@ -251,6 +258,8 @@ s {
   flex-wrap: wrap;
   gap: 6.5pt 10pt;
   list-style: none;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .skills li {
@@ -262,20 +271,70 @@ s {
   line-height: 1.2;
 }
 
+.languages {
+  list-style: none;
+}
+
+.languages li + li {
+  margin-top: 8pt;
+}
+
+.languages li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  transform: translateZ(0);
+}
+
+.lang-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6pt;
+}
+
+.lang-name {
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.lang-level {
+  font-size: 8pt;
+  color: var(--muted);
+}
+
+.lang-dots {
+  display: flex;
+  align-items: center;
+  gap: 1.6pt;
+  margin-top: 1.6pt;
+  line-height: 1;
+}
+
+.lang-dot {
+  flex: none;
+  font-size: 7.2pt;
+  line-height: 1;
+  color: #d9d9d9;
+  font-style: normal;
+}
+
+.lang-dot.on {
+  color: var(--blue);
+}
+
 .job {
   padding-bottom: 7pt;
   margin-bottom: 7pt;
   border-bottom: 0.6pt dashed var(--dash);
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .job.last {
   border-bottom: 0;
   margin-bottom: 0;
   padding-bottom: 0;
-}
-
-.page-2 .job.last {
-  margin-bottom: 20pt;
 }
 
 .job-title {
@@ -371,22 +430,23 @@ s {
 
 @page {
   size: 595.92pt 842.88pt;
-  margin: 0;
+  margin: 43.5pt 49pt 40pt;
 }
 
 @media print {
   html, body {
-    width: var(--page-w);
+    width: auto;
     height: auto;
     margin: 0;
     background: #fff;
   }
 
-  .page {
+  .sheet {
+    width: auto;
+    min-height: 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
-    overflow: visible;
-    height: var(--page-h);
   }
 }
 
@@ -395,7 +455,7 @@ s {
     background: #e8e8e8;
   }
 
-  .page {
+  .sheet {
     margin: 16pt auto;
     box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
   }
