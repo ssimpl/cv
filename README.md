@@ -4,8 +4,7 @@ Build a PDF resume from YAML. Edit your content in `resume.yaml`, add your `phot
 
 ## Dependencies
 
-- Python 3
-- [Google Chrome](https://www.google.com/chrome/) (used headless for PDF)
+- [Docker](https://docs.docker.com/get-docker/) (Compose included)
 
 ## Usage
 
@@ -13,7 +12,7 @@ Build a PDF resume from YAML. Edit your content in `resume.yaml`, add your `phot
 make pdf
 ```
 
-`make pdf` creates `.venv` and installs Python packages if needed. The first run also copies the examples if your files are missing:
+The first run builds a container with Python and Chromium. Later runs reuse it. If your files are missing, the first run also copies the examples:
 
 - `resume.example.yaml` → `resume.yaml`
 - `photo.example.png` → `photo.png`

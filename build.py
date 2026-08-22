@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import shutil
 import subprocess
@@ -25,7 +26,17 @@ CHROME_CANDIDATES = [
     Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
     Path("/Applications/Chromium.app/Contents/MacOS/Chromium"),
     Path("/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"),
+    Path("/usr/bin/chromium"),
+    Path("/usr/bin/chromium-browser"),
+    Path("/usr/bin/google-chrome"),
+    Path("/usr/bin/google-chrome-stable"),
 ]
+CHROME_NAMES = (
+    "google-chrome",
+    "google-chrome-stable",
+    "chromium",
+    "chromium-browser",
+)
 
 
 def as_text(value: object) -> str:
@@ -59,7 +70,17 @@ def find_chrome() -> Path | None:
     for path in CHROME_CANDIDATES:
         if path.exists():
             return path
-    return shutil.which("google-chrome") and Path(shutil.which("google-chrome"))
+    for name in CHROME_NAMES:
+        found = shutil.which(name)
+        if found:
+            return Path(found)
+    return None
+
+
+def chrome_sandbox_flags() -> list[str]:
+    if Path("/.dockerenv").exists() or os.geteuid() == 0:
+        return ["--no-sandbox", "--disable-dev-shm-usage"]
+    return []
 
 
 def copy_if_missing(src: Path, dst: Path) -> bool:
@@ -215,6 +236,7 @@ def write_pdf(html_path: Path, pdf_path: Path) -> None:
     cmd = [
         str(chrome),
         "--headless=new",
+        *chrome_sandbox_flags(),
         "--disable-gpu",
         "--no-pdf-header-footer",
         "--no-margins",

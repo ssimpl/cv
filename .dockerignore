@@ -1,0 +1,9 @@
+.git
+.venv
+.preview
+__pycache__
+dist
+*.pdf
+.DS_Store
+resume.yaml
+photo.png

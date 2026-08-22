@@ -1,0 +1,10 @@
+services:
+  pdf:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    shm_size: 256mb
+    init: true
+    environment:
+      HOME: /tmp
